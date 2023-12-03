@@ -20,4 +20,6 @@ public class Hotel {
     private String name;
     private String location;
     private Float userRating;
+
+    // Also add amenities, description, coordinates,
 }
