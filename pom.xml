@@ -16,6 +16,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>catalog-service</module>
+        <module>reservation-service</module>
     </modules>
 
     <properties>
