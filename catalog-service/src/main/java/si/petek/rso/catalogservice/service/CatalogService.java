@@ -5,10 +5,11 @@ import si.petek.rso.catalogservice.dto.CatalogResponse;
 import si.petek.rso.catalogservice.model.Hotel;
 import si.petek.rso.catalogservice.repository.CatalogRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static si.petek.rso.catalogservice.dto.CatalogResponse.mapToCatalogResponse;
+import static si.petek.rso.catalogservice.dto.CatalogResponse.createCatalogResponseFromHotel;
+import static si.petek.rso.catalogservice.dto.CatalogResponse.mapToCatalogResponses;
 
 @Service
 public class CatalogService {
@@ -21,6 +22,15 @@ public class CatalogService {
 
     public List<CatalogResponse> getAllHotels(){
         // Get all hotels from database and map them to CatalogResponse
-        return mapToCatalogResponse(catalogRepository.findAll());
+        return mapToCatalogResponses(catalogRepository.findAll());
+    }
+
+    public CatalogResponse getHotelByID(Long id){
+        Optional<Hotel> foundHotel = catalogRepository.findById(id);
+        CatalogResponse catalogResponse = new CatalogResponse();
+        if (foundHotel.isPresent()){
+            catalogResponse = createCatalogResponseFromHotel(foundHotel.get());
+        }
+        return catalogResponse;
     }
 }

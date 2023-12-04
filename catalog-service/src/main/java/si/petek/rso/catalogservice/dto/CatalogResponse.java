@@ -19,13 +19,16 @@ public class CatalogResponse {
     private String location;
     private Float userRating;
 
-    static public List<CatalogResponse> mapToCatalogResponse(List<Hotel> hotels){
+    public static List<CatalogResponse> mapToCatalogResponses(List<Hotel> hotels){
         List<CatalogResponse> catalogResponses = new ArrayList<>();
         for (Hotel hotel : hotels) {
-            CatalogResponse catalogResponse = new CatalogResponse(hotel.getId(), hotel.getName(),
-                    hotel.getLocation(), hotel.getUserRating());
-            catalogResponses.add(catalogResponse);
+            catalogResponses.add(createCatalogResponseFromHotel(hotel));
         }
         return catalogResponses;
     }
+
+    public static CatalogResponse createCatalogResponseFromHotel(Hotel hotel){
+        return new CatalogResponse(hotel.getId(), hotel.getName(),hotel.getLocation(), hotel.getUserRating());
+    }
+
 }
