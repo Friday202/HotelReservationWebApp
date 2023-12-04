@@ -21,7 +21,6 @@ public class CatalogService {
     }
 
     public List<CatalogResponse> getAllHotels(){
-        // Get all hotels from database and map them to CatalogResponse
         return mapToCatalogResponses(catalogRepository.findAll());
     }
 

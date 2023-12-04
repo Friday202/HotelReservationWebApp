@@ -18,6 +18,10 @@ public class CatalogResponse {
     private String name;
     private String location;
     private Float userRating;
+    private String description;
+    private String coordinates;
+
+    private List<String> amenities;
 
     public static List<CatalogResponse> mapToCatalogResponses(List<Hotel> hotels){
         List<CatalogResponse> catalogResponses = new ArrayList<>();
@@ -28,7 +32,8 @@ public class CatalogResponse {
     }
 
     public static CatalogResponse createCatalogResponseFromHotel(Hotel hotel){
-        return new CatalogResponse(hotel.getId(), hotel.getName(),hotel.getLocation(), hotel.getUserRating());
+        return new CatalogResponse(hotel.getId(), hotel.getName(),hotel.getLocation(), hotel.getUserRating(),
+                hotel.getDescription(), hotel.getCoordinates(), hotel.getAmenities());
     }
 
 }

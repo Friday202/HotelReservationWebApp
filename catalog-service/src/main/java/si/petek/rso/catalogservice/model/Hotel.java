@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "hotels")
 @Getter
@@ -20,6 +22,11 @@ public class Hotel {
     private String name;
     private String location;
     private Float userRating;
+    private String description;
+    private String coordinates;
 
-    // Also add amenities, description, coordinates,
+    @ElementCollection
+    @CollectionTable(name = "hotel_amenities", joinColumns = @JoinColumn(name = "hotel_id"))
+    @Column(name = "amenity")
+    private List<String> amenities;
 }
