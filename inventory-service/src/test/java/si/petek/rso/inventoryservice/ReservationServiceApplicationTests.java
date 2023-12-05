@@ -1,4 +1,4 @@
-package si.petek.rso.reservationservice;
+package si.petek.rso.inventoryservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

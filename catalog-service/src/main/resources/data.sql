@@ -1,5 +1,5 @@
 INSERT INTO hotels (name, location, user_rating, description, coordinates) VALUES
-('Hotel A', 'Location A', 4.5, 'Some description', 'Coords'),
+('Grand Plaza Hotel and Congress Centre', 'Bratislavska cesta 8, 1000 Ljubljana', 5.0, 'Description ', 'Coords'),
 ('Hotel B', 'Location B', 3.8, 'Some description', 'Coords'),
 ('Hotel C', 'Location C', 4.2, 'Some description', 'Coords');
 

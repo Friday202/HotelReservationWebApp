@@ -22,7 +22,10 @@ public class Hotel {
     private String name;
     private String location;
     private Float userRating;
+
+
     private String description;
+
     private String coordinates;
 
     @ElementCollection

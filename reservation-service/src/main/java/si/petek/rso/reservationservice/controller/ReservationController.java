@@ -18,8 +18,6 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public String getHello(){
