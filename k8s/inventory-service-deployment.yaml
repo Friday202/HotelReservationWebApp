@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: inventory-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: inventory-service
+  template:
+    metadata:
+      labels:
+        app: inventory-service
+    spec:
+      containers:
+        - image: jakobpetek/inventoryservice:1.0
+          name: inventory-service
+          env:
+            - name: DATABASE_HOST
+              value:
+            - name: DATABASE_PORT
+              value: 5432
+            - name: DATABASE_NAME
+              value:
+            - name: DATABASE_USERNAME
+              value:
+            - name: DATABASE_PASSWORD
+              value:
+          ports:
+            - containerPort: 8081
+              name: server
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: inventory-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8081
+      protocol: TCP
+      targetPort: server
+  selector:
+    app: inventory-service
