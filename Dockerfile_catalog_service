@@ -7,6 +7,7 @@ RUN mvn clean install -DskipTests
 FROM eclipse-temurin:17-jdk-alpine
 RUN mkdir /app
 WORKDIR /app
+
 COPY --from=build ./app/catalog-service/target/catalog-service-1.0-SNAPSHOT.jar /app/
 
 ENV DATABASE_HOST=localhost
