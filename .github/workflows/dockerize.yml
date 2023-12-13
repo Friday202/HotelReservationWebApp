@@ -34,6 +34,6 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v3
         with:
-          file: ./Dockerfile_with_maven_build
+          file: ./catalog-service/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/image-catalog:${{ steps.current-time.outputs.formattedTime }}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/catalog-service:${{ steps.current-time.outputs.formattedTime }}
