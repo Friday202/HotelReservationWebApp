@@ -1,12 +1,13 @@
 FROM maven:3.8.3-openjdk-17 AS build
 COPY ./ /app
 WORKDIR /app
-RUN mvn --show-version --update-snapshots --batch-mode clean install -DskipTests
+# Whole project is now build
+RUN mvn clean install -DskipTests
 
 FROM eclipse-temurin:17-jdk-alpine
 RUN mkdir /app
 WORKDIR /app
-COPY --from build ./app/target/catalog-service-1.0-SNAPSHOT.jar /app/
+COPY --from=build ./app/catalog-service/target/catalog-service-1.0-SNAPSHOT.jar /app/
 
 ENV DATABASE_HOST=localhost
 ENV DATABASE_PORT=5432
@@ -17,6 +18,3 @@ ENV DATABASE_PASSWORD=defaultpassword
 EXPOSE 8080
 
 CMD ["java", "-jar", "catalog-service-1.0-SNAPSHOT.jar"]
-
-
-

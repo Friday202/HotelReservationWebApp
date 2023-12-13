@@ -1,0 +1,20 @@
+FROM maven:3.8.3-openjdk-17 AS build
+COPY ./ /app
+WORKDIR /app
+# Whole project is now build
+RUN mvn clean install -DskipTests
+
+FROM eclipse-temurin:17-jdk-alpine
+RUN mkdir /app
+WORKDIR /app
+COPY --from=build ./app/inventory-service/target/inventory-service-1.0-SNAPSHOT.jar /app/
+
+ENV DATABASE_HOST=localhost
+ENV DATABASE_PORT=5432
+ENV DATABASE_NAME=mydatabase
+ENV DATABASE_USERNAME=defaultuser
+ENV DATABASE_PASSWORD=defaultpassword
+
+EXPOSE 8081
+
+CMD ["java", "-jar", "inventory-service-1.0-SNAPSHOT.jar"]
