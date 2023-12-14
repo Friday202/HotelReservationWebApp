@@ -17,15 +17,34 @@ spec:
           name: inventory-service
           env:
             - name: DATABASE_HOST
-              value:
+              valueFrom:
+                secretKeyRef:
+                  name: db-catalog
+                  key: DATABASE_HOST
+
             - name: DATABASE_PORT
-              value: 5432
+              valueFrom:
+                secretKeyRef:
+                  name: db-catalog
+                  key: DATABASE_PORT
+
             - name: DATABASE_NAME
-              value:
+              valueFrom:
+                secretKeyRef:
+                  name: db-inventory
+                  key: DATABASE_NAME
+
             - name: DATABASE_USERNAME
-              value:
+              valueFrom:
+                secretKeyRef:
+                  name: db-inventory
+                  key: DATABASE_USERNAME
+
             - name: DATABASE_PASSWORD
-              value:
+              valueFrom:
+                secretKeyRef:
+                  name: db-inventory
+                  key: DATABASE_PASSWORD
           ports:
             - containerPort: 8081
               name: server
