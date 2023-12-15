@@ -35,7 +35,7 @@ public class CatalogController {
     @PostMapping("/actuator/health/set")
     public String simulateSickService(){
         catalogHealthIndicator.setHealthStatus(Status.DOWN);
-        return "Simulating unhealthy state.";
+        return "Simulating unhealthy state...";
     }
 
 }
