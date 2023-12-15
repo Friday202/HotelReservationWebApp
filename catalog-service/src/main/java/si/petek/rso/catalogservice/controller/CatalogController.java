@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import si.petek.rso.catalogservice.dto.CatalogResponse;
 import si.petek.rso.catalogservice.healthcheck.CatalogHealthIndicator;
+import si.petek.rso.catalogservice.metrics.CatalogMetrics;
 import si.petek.rso.catalogservice.service.CatalogService;
 
 import java.util.List;
@@ -15,14 +16,19 @@ public class CatalogController {
     private final CatalogService catalogService;
     private final CatalogHealthIndicator catalogHealthIndicator;
 
-    public CatalogController(CatalogService catalogService, CatalogHealthIndicator catalogHealthIndicator) {
+    private final CatalogMetrics catalogMetrics;
+
+    public CatalogController(CatalogService catalogService, CatalogHealthIndicator catalogHealthIndicator, CatalogMetrics catalogMetrics) {
         this.catalogService = catalogService;
         this.catalogHealthIndicator = catalogHealthIndicator;
+        this.catalogMetrics = catalogMetrics;
+        this.catalogMetrics.setCatalogRepository(this.catalogService.getCatalogRepository());
     }
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public List<CatalogResponse> getAllHotels(){
+        catalogMetrics.incrementCatalogCounter();
         return catalogService.getAllHotels();
     }
 
@@ -38,4 +44,13 @@ public class CatalogController {
         return "Simulating unhealthy state..";
     }
 
+    @GetMapping("/actuator/metrics/counter")
+    public double getCounterAmount(){
+        return catalogMetrics.getCatalogCounterCount();
+    }
+
+    @GetMapping("/actuator/metrics/databasesize")
+    public long getDatabaseSize(){
+        return catalogMetrics.getDatabaseSize();
+    }
 }

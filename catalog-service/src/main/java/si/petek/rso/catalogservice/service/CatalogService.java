@@ -25,11 +25,16 @@ public class CatalogService {
     }
 
     public CatalogResponse getHotelByID(Long id){
+
         Optional<Hotel> foundHotel = catalogRepository.findById(id);
         CatalogResponse catalogResponse = new CatalogResponse();
         if (foundHotel.isPresent()){
             catalogResponse = createCatalogResponseFromHotel(foundHotel.get());
         }
         return catalogResponse;
+    }
+
+    public CatalogRepository getCatalogRepository(){
+        return catalogRepository;
     }
 }
