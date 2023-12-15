@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: dorny/paths-filter@v2
         id: filter
         with:
@@ -28,8 +28,7 @@ jobs:
       # run only if 'catalogservice' files were changed
       - name: catalogservice
         if: steps.filter.outputs.catalogservice == 'true'
-        run: |        
-          - uses: actions/checkout@v3
+        run: |               
           - name: Get current time
             id: current-time
             uses: josStorer/get-current-time@v2.0.2
