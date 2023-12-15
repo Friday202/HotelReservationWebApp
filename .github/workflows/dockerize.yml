@@ -2,15 +2,18 @@ name: build with Maven and package as Docker image
 
 on:
   push:
-    branches: [ master ]
+    paths:
+      - 'catalog-service/**'
+      - 'inventory-service/**'
   pull_request:
-    branches: [ master ]
+    paths:
+      - 'catalog-service/**'
+      - 'inventory-service/**'
 
 jobs:
-  build:
-
+  build_catalog_service:
     runs-on: ubuntu-latest
-
+    if: ${{ github.event_name == 'push' && contains(github.event.inputs.paths, 'catalog-service/') }}
     steps:
       - uses: actions/checkout@v3
 
