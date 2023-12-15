@@ -28,9 +28,7 @@ jobs:
       # run only if 'catalogservice' files were changed
       - name: catalogservice
         if: steps.filter.outputs.catalogservice == 'true'
-        run: |
-          # Put your existing code here
-
+        run: |       
           - uses: actions/checkout@v3
 
           - name: Get current time
