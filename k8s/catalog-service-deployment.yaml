@@ -13,8 +13,9 @@ spec:
         app: catalog-service
     spec:
       containers:
-        - image: jakobpetek/catalogservice:1.0
+        - image: jakobpetek/catalog-service:2023-12-14-14-11-43
           name: catalog-service
+          imagePullPolicy: Always
           env:
             - name: DATABASE_HOST
               valueFrom:
