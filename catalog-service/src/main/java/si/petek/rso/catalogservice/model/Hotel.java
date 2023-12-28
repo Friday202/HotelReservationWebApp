@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Type;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class Hotel {
     private String location;
     private Float userRating;
 
-
+    @Column(columnDefinition="TEXT")
     private String description;
 
     private String coordinates;
