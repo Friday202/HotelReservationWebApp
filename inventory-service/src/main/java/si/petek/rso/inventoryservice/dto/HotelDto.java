@@ -20,6 +20,16 @@ public class HotelDto {
     private long id;
     private List<RoomDto> roomDtos;
 
+    public List<RoomDto> getAvailableRoomsForDate(String startDate, String endDate){
+        List<RoomDto> availableRoomDtos = new ArrayList<>();
+        for(RoomDto roomDto : roomDtos){
+            if (roomDto.isRoomAvailable(startDate, endDate)){
+                availableRoomDtos.add(roomDto);
+            }
+        }
+        return  availableRoomDtos;
+    }
+
     public static HotelDto createHotelDtoFromHotel(Hotel hotel){
         List<RoomDto> roomDtos = new ArrayList<>();
         for (Room room : hotel.getRooms()){

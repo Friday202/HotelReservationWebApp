@@ -1,64 +1,76 @@
-function createNewHotelExtended(name, location, rating, description, coordinates, amentities,
+function reservationButtonClicked(hotelId)
+{
+    var url = 'reservation.html?hotelId=' + hotelId;
+
+    // Open the new window or tab with the URL
+    window.open(url, '_blank');
+}
+
+function createNewHotelExtended(id, name, location, rating, description, coordinates, amentities,
      maxTemp, minTemp, conditions, dates)
 {
-    var oneHotel = document.getElementById("hotelView"); 
+    var oneHotel = document.getElementById("hotelView");
     if (oneHotel)
     {
-        // Clear the div if from before is not empty 
+        // Clear the div if from before is not empty
         while (oneHotel.firstChild)
         {
             oneHotel.removeChild(oneHotel.firstChild);
         }
 
-        // Create a title 
+        // Create a title
         var hotelName = document.createElement("h2");
-        hotelName.textContent = name; 
-    
-        // Create a paragraph for location 
+        hotelName.textContent = name;
+
+        // Create a paragraph for location
         var hotelLocation = document.createElement("p");
-        hotelLocation.textContent = "Location: " + location; 
+        hotelLocation.textContent = "Location: " + location;
 
         // Create a paragraph for user rating
         var hotelUserRating = document.createElement("p");
-        hotelUserRating.textContent = "User rating: " + rating; 
+        hotelUserRating.textContent = "User rating: " + rating;
 
         // Create a paragraph for descripton
         var hotelDescription = document.createElement("p");
-        hotelDescription.textContent = description;                        
-        
-        // Create a button for details 
-        var bookButton = document.createElement("button");
-        bookButton.textContent = "Book";      
-        
-        var returnButton = document.createElement("button");
-        returnButton.textContent = "Return";   
-        
-        returnButton.addEventListener('click', function() {
-            buttonDetailsClicked(-1, true); 
-        });      
+        hotelDescription.textContent = description;
 
-        //Append all to div 
-        oneHotel.append(hotelName); 
+        // Create a button for details
+        var bookButton = document.createElement("button");
+        bookButton.textContent = "Book";
+
+        bookButton.addEventListener('click', function(){
+            reservationButtonClicked(id);
+        });
+
+        var returnButton = document.createElement("button");
+        returnButton.textContent = "Return";
+
+        returnButton.addEventListener('click', function() {
+            buttonDetailsClicked(-1, true);
+        });
+
+        //Append all to div
+        oneHotel.append(hotelName);
         oneHotel.append(hotelLocation);
-        oneHotel.append(hotelUserRating); 
-        oneHotel.append(hotelDescription);      
+        oneHotel.append(hotelUserRating);
+        oneHotel.append(hotelDescription);
 
         oneHotel.append(document.createElement("p").textContent = "Offers: ");
 
-        // Add amentities 
+        // Add amentities
         amentities.forEach(amentity => {
-            var amentityList = document.createElement("li");   
-            amentityList.textContent = amentity; 
-            oneHotel.append(amentityList);   
+            var amentityList = document.createElement("li");
+            amentityList.textContent = amentity;
+            oneHotel.append(amentityList);
         });
 
-        // add Weather data 
-        var canvas = document.createElement("canvas"); 
+        // add Weather data
+        var canvas = document.createElement("canvas");
         canvas.width = 600;
-        canvas.height = 300; 
-        var ctx = canvas.getContext('2d'); 
+        canvas.height = 300;
+        var ctx = canvas.getContext('2d');
 
-        // Creating the chart       
+        // Creating the chart
 
         const weatherChart = new Chart(ctx, {
             type: 'line',
@@ -114,17 +126,17 @@ function createNewHotelExtended(name, location, rating, description, coordinates
             }
         });
 
-        oneHotel.append(canvas); 
+        oneHotel.append(canvas);
         oneHotel.append(bookButton);
-        oneHotel.append(returnButton);           
+        oneHotel.append(returnButton);
 
     }
 }
 
 function displayOneHotelExtended(hotel)
 {
-    // hotel has all json data 
-    createNewHotelExtended(hotel.name, hotel.location, hotel.userRating, 
+    // hotel has all json data
+    createNewHotelExtended(hotel.id, hotel.name, hotel.location, hotel.userRating,
         hotel.description, hotel.coordinates, hotel.amenities, hotel.maxTemp,
         hotel.minTemp, hotel.weatherConditions, hotel.dates);
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import si.petek.rso.inventoryservice.model.Reservation;
+import java.time.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,10 +13,12 @@ import si.petek.rso.inventoryservice.model.Reservation;
 @Getter
 public class ReservationDto {
     private Long id;
-    private String startDate;
-    private String endDate;
+    private LocalDate startDate;
+    private LocalDate endDate;
 
     public static ReservationDto createReservationDtoFromReservation(Reservation reservation){
-        return new ReservationDto(reservation.getId(), reservation.getStartDate(), reservation.getEndDate());
+        return new ReservationDto(reservation.getId(),
+                LocalDate.parse(reservation.getStartDate()),
+                LocalDate.parse(reservation.getEndDate()));
     }
 }

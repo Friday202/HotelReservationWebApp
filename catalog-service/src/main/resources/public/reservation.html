@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Reservation Form</title>
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    form {
+      max-width: 400px;
+      margin: auto;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .room {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h2 id="title">Hotel reservation form</h2>
+
+<form id="form">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="surname">Surname:</label>
+    <input type="text" id="surname" name="surname" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="fromDate">From Date:</label>
+    <input type="date" id="fromDate" name="fromDate" required>
+
+    <label for="toDate">To Date:</label>
+    <input type="date" id="toDate" name="toDate" required>
+
+    <button type="button" onclick="acquireButtonClicked()">Acquire</button>
+</form>
+
+<div id="roomContainer"></div>
+
+<script src="js/reservation.js"></script>
+
+<div id="close"></div>
+
+</body>
+</html>

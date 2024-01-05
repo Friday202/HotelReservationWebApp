@@ -1,11 +1,12 @@
 package si.petek.rso.reservationservice.controller;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import si.petek.rso.reservationservice.dto.PostServiceRequest;
+import si.petek.rso.reservationservice.dto.RoomDto;
 import si.petek.rso.reservationservice.service.ReservationService;
+
+import java.util.List;
 
 
 @RestController
@@ -18,10 +19,16 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-    @GetMapping
+    @GetMapping("/{hotelId}/{startDate}/{endDate}")
     @ResponseStatus(HttpStatus.OK)
-    public String getHello(){
-        return "Gaga bababuyi!";
+    public List<RoomDto> getAvailableRoomsFromHotel(@PathVariable long hotelId, @PathVariable String startDate, @PathVariable String endDate){
+        return reservationService.getAvailableRoomsFromHotel(hotelId, startDate, endDate);
+    }
+
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
+    public void reserveRoom(@RequestBody PostServiceRequest postServiceRequest){
+        reservationService.reserveRoom(postServiceRequest);
     }
 
 }
