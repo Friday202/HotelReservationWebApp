@@ -1,5 +1,6 @@
 package si.petek.rso.inventoryservice.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.boot.actuate.health.Status;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -25,12 +26,14 @@ public class InventoryController {
 
     @GetMapping("/{hotel_id}")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Gets all rooms from hotel", description = "Gets all rooms from given hotel by ID.")
     public InventoryResponse getAllRoomsFromHotel(@PathVariable Long hotel_id){
         return inventoryService.getAllRoomsFromHotel(hotel_id);
     }
 
     @GetMapping("/{hotelId}/{startDate}/{endDate}")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get available rooms from hotel", description = "Gets all available rooms from given hotel within the start and end date.")
     public List<RoomDto> getAvailableRoomsFromHotel(@PathVariable long hotelId, @PathVariable String startDate, @PathVariable String endDate){
         // Method returns all available rooms from given hotel and desired dates
         return inventoryService.getAvailableRoomsFromHotel(hotelId, startDate, endDate);
@@ -38,6 +41,7 @@ public class InventoryController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Reserve room", description = "Reserves a room in the database")
     public void reserveRoom(@RequestBody PostServiceRequest postServiceRequest){
         inventoryService.reserveRoom(postServiceRequest);
     }

@@ -1,5 +1,6 @@
 package si.petek.rso.reservationservice.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import si.petek.rso.reservationservice.dto.PostServiceRequest;
@@ -21,12 +22,14 @@ public class ReservationController {
 
     @GetMapping("/{hotelId}/{startDate}/{endDate}")
     @ResponseStatus(HttpStatus.OK)
+    @Operation(summary = "Get available rooms from hotel", description = "Gets all available rooms from hotel given an ID, start and end date.")
     public List<RoomDto> getAvailableRoomsFromHotel(@PathVariable long hotelId, @PathVariable String startDate, @PathVariable String endDate){
         return reservationService.getAvailableRoomsFromHotel(hotelId, startDate, endDate);
     }
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Reserves a room", description = "Reserves a room in a hotel.")
     public void reserveRoom(@RequestBody PostServiceRequest postServiceRequest){
         reservationService.reserveRoom(postServiceRequest);
     }

@@ -143,7 +143,7 @@ function displayOneHotelExtended(hotel)
 
 function getOneHotelData(hotelId)
 {
-    var url = "http://localhost:8080/api/v1/catalog/" + String(hotelId); 
+    var url = "/api/v1/catalog/" + String(hotelId);
     fetch(url)
     .then(response => {
         if (!response.ok)
@@ -242,7 +242,7 @@ function addAndCreateNewHotel(data)
 }
 
 // Begin script 
-fetch("http://localhost:8080/api/v1/catalog")
+fetch("/api/v1/catalog")
 .then(response => {
     if (!response.ok)
     {

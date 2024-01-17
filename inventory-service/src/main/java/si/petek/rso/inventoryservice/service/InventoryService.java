@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static si.petek.rso.inventoryservice.dto.HotelDto.createHotelDtoFromHotel;
+import static si.petek.rso.inventoryservice.dto.RoomDto.createRoomDtoFromRoom;
 
 @Service
 public class InventoryService {
@@ -58,7 +59,9 @@ public class InventoryService {
             for (Room room : hotel.getRooms()){
                 if (room.getId() == Long.valueOf(postServiceRequest.getRoomId())){
 
-                    // TODO: before doing so make sure that the room is in fact empty!
+                    if (!createRoomDtoFromRoom(room).isRoomAvailable(postServiceRequest.getStartDate(), postServiceRequest.getEndDate())){
+                        return;
+                    }
 
                     Reservation newReservation = new Reservation();
                     newReservation.setRoom(room);

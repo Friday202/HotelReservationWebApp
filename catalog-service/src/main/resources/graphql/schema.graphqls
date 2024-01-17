@@ -1,0 +1,13 @@
+type  Query {
+    hotelById(id: ID) : Hotel
+}
+
+type Hotel {
+    id: ID
+    name: String
+    location: String
+    userRating : Float
+    description : String
+    coordinates : String
+    amenities : [String]
+}
