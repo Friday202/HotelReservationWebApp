@@ -13,7 +13,7 @@ spec:
         app: inventory-service
     spec:
       containers:
-        - image: jakobpetek/inventoryservice:1.0
+        - image: jakobpetek/inventory-service:2024-01-17-14-46-25
           name: inventory-service
           env:
             - name: DATABASE_HOST

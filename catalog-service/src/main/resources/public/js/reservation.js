@@ -16,7 +16,7 @@ function acquireButtonClicked(){
     const fromDate = document.getElementById('fromDate').value;
     const toDate = document.getElementById('toDate').value;
 
-    var url = "http://192.168.64.102:8082/api/v1/reservation/" + hotelId + "/" + fromDate + "/" + toDate;
+    var url = "http://4.157.37.151:8082/api/v1/reservation/" + hotelId + "/" + fromDate + "/" + toDate;
     fetch(url)
     .then(response => {
         if (!response.ok)
@@ -58,7 +58,7 @@ function displayData(roomData){
 }
 
 function reserveRoom(roomId){
-    const url = 'http://192.168.64.102:8082/api/v1/reservation';
+    const url = 'http://4.157.37.151:8082/api/v1/reservation';
     const data = {
     hotelId: hotelId,
     startDate: document.getElementById('fromDate').value,

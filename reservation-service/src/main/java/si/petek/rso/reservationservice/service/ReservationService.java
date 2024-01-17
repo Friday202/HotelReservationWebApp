@@ -26,7 +26,7 @@ public class ReservationService {
 
     public List<RoomDto> getAvailableRoomsFromHotel(long hotelId, String startDate, String endDate){
         // Make an API call to inventory service
-        String url = "http://104.45.180.219:8081/api/v1/inventory/" + String.valueOf(hotelId) + "/" + startDate + "/" + endDate;
+        String url = "http://inventory-service:8081/api/v1/inventory/" + String.valueOf(hotelId) + "/" + startDate + "/" + endDate;
         String inventoryResponse = restTemplate.getForObject(url, String.class);
 
         //System.out.println(inventoryResponse);
@@ -48,7 +48,7 @@ public class ReservationService {
 
     public void reserveRoom(PostServiceRequest postServiceRequest){
         // make API call to add a new reservation to database in inventory
-        String url = "http://104.45.180.219:8081/api/v1/inventory";
+        String url = "http://inventory-service:8081/api/v1/inventory";
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

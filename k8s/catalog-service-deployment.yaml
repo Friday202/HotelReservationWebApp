@@ -13,7 +13,7 @@ spec:
         app: catalog-service
     spec:
       containers:
-        - image: jakobpetek/catalog-service:2023-12-14-14-11-43
+        - image: jakobpetek/catalog-service:2024-01-17-14-46-26
           name: catalog-service
           imagePullPolicy: Always
           env:
